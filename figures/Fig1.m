@@ -11,9 +11,9 @@ end
 game_parameters = [2-1, -1, 2, 0];
 
 % fixed strategies for player X
-fixed_strategies = [0.84, 0.02, 0.55, 0.06;
+fixed_strategies = [0.94, 0.02, 0.11, 0.97;
+    0.84, 0.02, 0.55, 0.06;
     1, 0.22, 0.53, 0.13;
-    0.94, 0.02, 0.11, 0.97;
     0.8, 0, 0.8, 0;
     1, 0.2, 1, 0.2];
 

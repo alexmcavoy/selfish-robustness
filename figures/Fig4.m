@@ -32,7 +32,6 @@ for panel=1:length(panels)
     piX_final = zeros(1, initial_conditions);
     piY_final = zeros(1, initial_conditions);
     parfor sample=1:initial_conditions
-        disp(sample);
         [~, piY_final(sample), piX_final(sample)] = optimize(random('beta', 0.5, 0.5, 1, 4), p, game_parameters, error_probability, learning_rate, -1, 0);
     end
 

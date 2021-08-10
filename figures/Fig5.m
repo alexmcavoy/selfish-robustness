@@ -28,6 +28,7 @@ error_probabilities = [0, 0.005];
 % build panels a and b
 panels = ['a', 'b'];
 for panel=1:length(panels)
+    
     error_probability = error_probabilities(panel);
     
     [~, piY_final, piX_final] = optimize(q, p, game_parameters, error_probability, learning_rate, learning_steps, 1);
@@ -52,14 +53,13 @@ for panel=1:length(panels)
     plot(m:0.01:M, m:0.01:M, '--k'); hold on;
 
     colors = jet(length(piX_final));
-
     colormap(colors);
 
     scatter(piY_final, piX_final, 30, 1:length(piX_final), 'filled'); colorbar; hold on;
 
     scatter(piY_final(1), piX_final(1), 75, colors(1, :), 'filled'); hold on;
     scatter(piY_final(length(piX_final)), piX_final(length(piX_final)), 50, colors(length(piX_final), :), 'filled');
-
+    
     axis([min(game_parameters)-buff, max(game_parameters)+buff, min(game_parameters)-buff, max(game_parameters)+buff]);
 
     xticks(min(game_parameters):1:max(game_parameters));

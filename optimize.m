@@ -10,7 +10,7 @@ function [p_final, piX_final, piY_final] = optimize(p, q, game_parameters, ...
 %     steps to apply in total (learning_steps), and a boolean for whether
 %     to track the trajectory (track_trajectory). If learning_steps is
 %     negative, then gradient ascent is applied until successive payoff
-%     differences fall beneath a threshold of 1e-12; otherwise, the
+%     differences fall beneath a threshold of 1e-15; otherwise, the
 %     prescribed number of gradient ascent steps is applied. If
 %     track_trajectory is 1, then the output is a sequence of 3-tuples,
 %     giving the strategy of X, the payoff of X, and the payoff of Y at
@@ -23,7 +23,7 @@ function [p_final, piX_final, piY_final] = optimize(p, q, game_parameters, ...
     if learning_steps<0
         piX_current = piX_final;
         array_size = 1e4; % amount of new entries to add to arrays when resizing
-        threshold = 1e-12; % fixed threshold for successive payoff differences
+        threshold = 1e-15; % fixed threshold for successive payoff differences
         current_difference = 1; % current difference between sucessive payoffs
         current_size = 1; % current size of output arrays
         
