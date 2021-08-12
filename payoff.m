@@ -1,15 +1,16 @@
-function [piX, piY] = payoff(p, q, game_parameters, error_probability)
+function [piX, piY] = payoff(p, q, game_parameters, error_probabilities)
 % PAYOFF
-%     PAYOFF(p, q, game_parameters, error_probability) takes as input the
+%     PAYOFF(p, q, game_parameters, error_probabilities) takes as input the
 %     strategy of player X (p), the strategy of player Y (q), the payoffs
-%     for the one-shot game (game_parameters), and the probability of
-%     making an implementation error (error_probability). The output is a
-%     pair, [piX, piY], where piX is the payoff to X and piY is the payoff
-%     to Y. An error is thrown if these payoffs are undefined.
-    
+%     for the one-shot game (game_parameters), and the probabilities of
+%     making an implementation error (error_probabilities, whose first and
+%     second entries correspond to p and q). The output is a pair, [piX,
+%     piY], where piX is the payoff to X and piY is the payoff to Y. An
+%     error is thrown if these payoffs are undefined.
+
     % effective strategies for X and Y after taking into account errors
-    p_effective = (1-error_probability)*p+error_probability*(1-p);
-    q_effective = (1-error_probability)*q+error_probability*(1-q);
+    p_effective = (1-error_probabilities(1))*p+error_probabilities(1)*(1-p);
+    q_effective = (1-error_probabilities(2))*q+error_probabilities(2)*(1-q);
 
     % ordering of the states from the perspectives of X and Y, respectively
     X_ind = [1, 2, 3, 4];

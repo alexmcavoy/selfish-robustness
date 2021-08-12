@@ -30,8 +30,8 @@ hull_strategies = [0, 0, 0, 0;
         1, 0, 1, 1;
         1, 1, 1, 1];
     
-% probability of implementation error
-error_probability = 0;
+% probabilities of implementation errors for the two players (X and Y)
+error_probabilities = [0, 0];
 
 % build panels a, b, c, d, and e
 panels = ['a', 'b', 'c', 'd', 'e'];
@@ -41,7 +41,7 @@ for panel=1:length(panels)
     piX_hull = zeros(1, size(hull_strategies, 1));
     piY_hull = zeros(1, size(hull_strategies, 1));
     for hull_strategy=1:size(hull_strategies, 1)
-        [piX_hull(hull_strategy), piY_hull(hull_strategy)] = payoff(p, hull_strategies(hull_strategy, :), game_parameters, error_probability);
+        [piX_hull(hull_strategy), piY_hull(hull_strategy)] = payoff(p, hull_strategies(hull_strategy, :), game_parameters, error_probabilities);
     end
     
     hFig = figure(1);
@@ -98,7 +98,7 @@ parfor sample=1:max_samples
     piX_hull = zeros(1, size(hull_strategies, 1));
     piY_hull = zeros(1, size(hull_strategies, 1));
     for hull_strategy=1:size(hull_strategies, 1)
-        [piX_hull(hull_strategy), piY_hull(hull_strategy)] = payoff(p, hull_strategies(hull_strategy, :), game_parameters, error_probability);
+        [piX_hull(hull_strategy), piY_hull(hull_strategy)] = payoff(p, hull_strategies(hull_strategy, :), game_parameters, error_probabilities);
     end
     maxIndex = find(piY_hull==max(piY_hull));
     piX(sample) = piX_hull(maxIndex);

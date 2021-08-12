@@ -19,8 +19,8 @@ learning_steps = 1e4;
 % fixed strategy for X
 p = [1, 0.12, 0.88, 0];
 
-% probability of implementation error
-error_probability = 0;
+% probabilities of implementation errors for the two players (Y and X)
+error_probabilities = [0, 0];
 
 % initial strategies for player Y
 initial_strategies = [0.92, 0.77, 0.40, 0.19;
@@ -33,7 +33,7 @@ for panel=1:length(panels)
     % initial strategy for Y
     q = initial_strategies(panel, :);
 
-    [q_trajectory, ~, ~] = optimize(q, p, game_parameters, error_probability, learning_rate, learning_steps, 1);
+    [q_trajectory, ~, ~] = optimize(q, p, game_parameters, error_probabilities, learning_rate, learning_steps, 1);
 
     hFig = figure(1);
     hFig.Renderer = 'Painters';

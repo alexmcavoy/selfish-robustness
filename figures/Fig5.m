@@ -17,21 +17,21 @@ p = [0.997, 0.005, 0.018, 0.015];
 q = [0.19, 0.10, 0.75, 0.92];
 
 % number of gradient ascent steps
-learning_steps = 1e5;
+learning_steps = 6e5;
 
 % learning rate
 learning_rate = 1e-2;
 
-% probabilities of implementation error
-error_probabilities = [0, 0.005];
+% probabilities of implementation errors for the two players (first column
+% for Y, second column for X)
+error_probabilities = [0, 0;
+    0.001, 0];
 
 % build panels a and b
 panels = ['a', 'b'];
 for panel=1:length(panels)
     
-    error_probability = error_probabilities(panel);
-    
-    [~, piY_final, piX_final] = optimize(q, p, game_parameters, error_probability, learning_rate, learning_steps, 1);
+    [~, piY_final, piX_final] = optimize(q, p, game_parameters, error_probabilities(panel, :), learning_rate, learning_steps, 1);
 
     hFig = figure(1);
     hFig.Renderer = 'Painters';

@@ -13,8 +13,8 @@ game_parameters = [3, 0, 5, 1];
 % number of initial strategies to sample
 initial_conditions = 1e5;
 
-% probability of implementation error
-error_probability = 0;
+% probabilities of implementation errors for the two players (Y and X)
+error_probabilities = [0, 0];
 
 % learning rate
 learning_rate = 1e-2;
@@ -32,7 +32,7 @@ for panel=1:length(panels)
     piX_final = zeros(1, initial_conditions);
     piY_final = zeros(1, initial_conditions);
     parfor sample=1:initial_conditions
-        [~, piY_final(sample), piX_final(sample)] = optimize(random('beta', 0.5, 0.5, 1, 4), p, game_parameters, error_probability, learning_rate, -1, 0);
+        [~, piY_final(sample), piX_final(sample)] = optimize(random('beta', 0.5, 0.5, 1, 4), p, game_parameters, error_probabilities, learning_rate, -1, 0);
     end
 
     hull_strategies = [0, 0, 0, 0;
@@ -51,7 +51,7 @@ for panel=1:length(panels)
 
     hull_payoffs = zeros(2, 11);
     for point=1:11
-        [hull_payoffs(1, point), hull_payoffs(2, point)] = payoff(p, hull_strategies(point, :), game_parameters, error_probability);
+        [hull_payoffs(2, point), hull_payoffs(1, point)] = payoff(hull_strategies(point, :), p, game_parameters, error_probabilities);
     end
 
     print_heatmap(payoffs, hull_payoffs, game_parameters, 1, strcat('output/Fig4', panels(panel)));

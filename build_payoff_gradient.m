@@ -20,11 +20,11 @@ X_ind = [1, 2, 3, 4];
 Y_ind = [1, 3, 2, 4];
 
 % symbolic strategy for player X
-p = sym('p', [1, 5]);
+p = sym('p', [1, 4]);
 assume(p, 'real');
 
 % symbolic strategy for player Y
-q = sym('q', [1, 5]);
+q = sym('q', [1, 4]);
 assume(q, 'real');
 
 % transition matrix for strategy pairs
