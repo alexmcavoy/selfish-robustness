@@ -25,7 +25,7 @@ learning_rate = 1e-2;
 % probabilities of implementation errors for the two players (first column
 % for Y, second column for X)
 error_probabilities = [0, 0;
-    0.001, 0];
+    1e-3, 0];
 
 % build panels a and b
 panels = ['a', 'b'];
